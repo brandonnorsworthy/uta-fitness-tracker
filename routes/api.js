@@ -1,71 +1,62 @@
 const router = require("express").Router();
-const Transaction = require("../models/workout.js");
 const path = require('path');
-
-// GET /exercise
-router.get("/exercise", (req, res) => {
-  res.sendFile(path.join(__dirname, '/../public/exercise.html'));
-})
-
-// GET /exercise?
-router.get("/exercise?", (req, res) => {
-  res.status(200).render()
-})
-
-// GET /stats
-router.get("/stats", (req, res) => {
-  res.status(200).render('../public/stats.html')
-})
+const workout = require("../models/workout.js");
 
 // GET /api/workouts
-router.get("/api/workouts", (req, res) => {
-  
+router.get("/workouts", (req, res) => {
+
 })
 
 // PUT /api/workouts/:id
-router.put("/api/workouts/:id", (req, res) => {
-  
+router.put("/workouts/:id", (req, res) => {
+
 })
 
 // POST /api/workouts
-router.post("/api/workouts", (req, res) => {
-  
+router.post("/workouts", ({ body }, res) => {
+  workout.create(body)
+    .then(dbTransaction => {
+      res.json(dbTransaction);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
 })
 
 // GET /api/workouts/range
-router.get("/api/workouts/range", (req, res) => {
-  
+router.get("/workouts/range", (req, res) => {
+
 })
 
 // router.post("/api/transaction", ({ body }, res) => {
-  // Transaction.create(body)
-  //   .then(dbTransaction => {
-  //     res.json(dbTransaction);
-  //   })
-  //   .catch(err => {
-  //     res.status(400).json(err);
-  //   });
+// Transaction.create(body)
+//   .then(dbTransaction => {
+//     res.json(dbTransaction);
+//   })
+//   .catch(err => {
+//     res.status(400).json(err);
+//   });
 // });
 
 // router.post("/api/transaction/bulk", ({ body }, res) => {
-  // Transaction.insertMany(body)
-  //   .then(dbTransaction => {
-  //     res.json(dbTransaction);
-  //   })
-  //   .catch(err => {
-  //     res.status(400).json(err);
-  //   });
+// Transaction.insertMany(body)
+//   .then(dbTransaction => {
+//     res.json(dbTransaction);
+//   })
+//   .catch(err => {
+//     res.status(400).json(err);
+//   });
 // });
 
 // router.get("/api/transaction", (req, res) => {
-  // Transaction.find({})
-  //   .sort({ date: -1 })
-  //   .then(dbTransaction => {
-  //     res.json(dbTransaction);
-  //   })
-  //   .catch(err => {
-  //     res.status(400).json(err);
-  //   });
+// Transaction.find({})
+//   .sort({ date: -1 })
+//   .then(dbTransaction => {
+//     res.json(dbTransaction);
+//   })
+//   .catch(err => {
+//     res.status(400).json(err);
+//   });
 // });
 
 module.exports = router;
