@@ -1,10 +1,16 @@
 const router = require("express").Router();
-const path = require('path');
-const workout = require("../models/workout.js");
+const db = require('../models');
 
 // GET /api/workouts
 router.get("/workouts", (req, res) => {
-
+  db.Workout.find({})
+    .then(dbWorkout => {
+      console.log('responsed: /workouts')
+      res.status(200).json(dbWorkout)
+    })
+    .catch(err => {
+      res.status(404).json(err)
+    })
 })
 
 // PUT /api/workouts/:id
@@ -14,7 +20,7 @@ router.put("/workouts/:id", (req, res) => {
 
 // POST /api/workouts
 router.post("/workouts", ({ body }, res) => {
-  workout.create(body)
+  Workout.create(body)
     .then(dbTransaction => {
       res.json(dbTransaction);
     })
