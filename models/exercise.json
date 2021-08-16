@@ -1,0 +1,19 @@
+[
+    {
+        "note":"req sent when creating a new workout"
+    },
+    {
+        "type": "resistance",
+        "name": "bench press",
+        "weight": 200,
+        "sets": 4,
+        "reps": 10,
+        "duration": 10
+    },
+    {
+        "type": "cardio",
+        "name": "Running",
+        "distance": 5,
+        "duration": 10
+    }
+]
