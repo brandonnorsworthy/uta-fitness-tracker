@@ -18,7 +18,7 @@ router.get("/workouts", (req, res) => {
     .catch((err) => {
       res.json(err);
     });
-})
+});
 
 // GET /api/workouts/range
 router.get("/workouts/range", (req, res) => {
